@@ -1,0 +1,15 @@
+.register {
+    min-width: 40%;
+    text-align: center;
+
+    .from {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        }
+
+        input {
+            width: 30%;
+        }
+}
