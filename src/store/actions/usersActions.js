@@ -4,17 +4,41 @@ import axios from "axios";
 export const loginUser = createAsyncThunk("loginUser", async (user) => {
   try {
     const { data, headers } = await axios.post(
-      "http://13.48.5.244/api/auth/authenticate",
+      `${process.env.REACT_APP_MAIN_URL}`,
       user,
       {
         headers: {
           "Content-Type": "application/json",
         },
-        // withCredentials: true
+        withCredentials: true,
       }
     );
-    // const setCookie = headers["set-cookie"];
+    const cook = document.cookie;
     return data.user;
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const getUsers = createAsyncThunk("getUsers", async () => {
+  try {
+    const { data } = await axios.get(`${process.env.REACT_APP_MAIN_URL}/users`, {
+      withCredentials: true,
+    });
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const getUsersById = createAsyncThunk("getUsersById", async () => {
+  try {
+    const { data } = await axios.get("http://localhost/api/users/", {
+      withCredentials: true,
+    });
+    console.log(data);
+    return data;
   } catch (error) {
     console.error(error);
   }
