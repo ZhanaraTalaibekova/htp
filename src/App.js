@@ -1,11 +1,19 @@
+import { Route, Routes } from "react-router";
+import { Login, Main, News, Users } from "./pages";
 import "./App.css";
-import { Login } from "./components";
+import { Layout } from "./shared";
 
 function App() {
   return (
     <>
-    {/* <Register/> */}
-      <Login />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Login />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/news" element={<News />} />
+        </Route>
+      </Routes>
     </>
   );
 }
